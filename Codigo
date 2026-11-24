@@ -1,0 +1,37 @@
+def clasificar_compromiso(duracion: int, clics: int) -> str:
+    """Determina el nivel de compromiso según duración (s) y número de clics."""
+    if duracion > 180 and clics > 8:
+        return "Alto"
+    elif duracion < 60 or clics < 3:
+        return "Bajo"
+    else:
+        return "Medio"
+
+
+def mostrar_informe(sesiones: list) -> None:
+    """Recorre la matriz de sesiones y muestra el informe por cliente."""
+    print("ID Cliente | Nivel de Compromiso")
+    print("-" * 34)
+    for sesion in sesiones:
+        id_cliente = sesion[0]
+        duracion = sesion[1]
+        clics = sesion[2]
+        nivel = clasificar_compromiso(duracion, clics)
+        print(f"{id_cliente:<10} | {nivel}")
+
+
+def main() -> None:
+    # Matriz con al menos 5 sesiones: [ID Cliente, Duración (s), Clics]
+    matriz_sesiones = [
+        ["C01", 240, 10],  # Alto
+        ["C02", 50, 7],    # Bajo
+        ["C03", 150, 2],   # Bajo
+        ["C04", 120, 6],   # Medio
+        ["C05", 190, 9],   # Alto
+        ["C06", 80, 4]     # Medio
+    ]
+    mostrar_informe(matriz_sesiones)
+
+
+if __name__ == "__main__":
+    main()
